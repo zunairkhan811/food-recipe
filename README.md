@@ -116,6 +116,12 @@ Run:
 - Twitter: [@zunairkhan811](https://twitter.com/zunairkhan811)
 - LinkedIn: [@mzunairkhan](https://www.linkedin.com/in/mzunairkhan)
 
+👤 **Lawmsangi Varte**
+
+- GitHub: [@githubhandle](https://github.com/Lawmsangi)
+- Twitter: [@twitterhandle](https://twitter.com/mamy_22_zayn)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/lawmsangi-varte-baa429244/)
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- FUTURE FEATURES -->
