@@ -6,6 +6,7 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id])
+    @recipe_foods = @recipe.recipe_foods
   end
 
   def create
@@ -24,7 +25,12 @@ class RecipesController < ApplicationController
 
   def update
     @recipe = Recipe.find(params[:id])
-    if @recipe.update(public: !@recipe.public)
+
+    if @recipe.public.zero?
+      @recipe.update(public: 1)
+      redirect_to @recipe, notice: 'Recipe public status was successfully updated.'
+    elsif @recipe.public == 1
+      @recipe.update(public: 0)
       redirect_to @recipe, notice: 'Recipe public status was successfully updated.'
     else
       render :edit
