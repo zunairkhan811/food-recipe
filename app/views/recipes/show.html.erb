@@ -1,0 +1,53 @@
+<div class="container recipe-details">
+  <div class="details">
+    <h2 class="text-center mb-4" style="margin-right:30%;"><%= @recipe.name %></h2>
+    <div class="row recipe-details-box1">
+        <div class="col-md-6">
+            <p>Preparation Time: <%= @recipe.preparation_time %> minutes</p>
+            <p>Cooking Time: <%= @recipe.cooking_time %> minutes</p>
+            <p>Description: <%= @recipe.description %></p>
+        </div>
+
+        <div class="col-md-6 text-right">
+            <%= form_for @recipe, url: recipe_path(@recipe), method: :patch do |f| %>
+                <div class="form-group">
+                    <%= f.label :public, class: 'mr-2' %>
+                    <%= f.check_box :public, class: 'form-check-input' %>
+                    <%= f.submit 'Toggle', class: 'btn btn-primary' %>
+                </div>
+            <% end %>
+        </div>
+    </div>
+
+    <div class="generate-shopping">
+      <%= link_to "Generate Shopping List"%>
+    
+      <%= link_to "Add Ingredient" %>
+    </div>
+  </div>
+
+  <table>
+  <thead>
+    <tr>
+      <th>Food</th>
+      <th>Quantity</th>
+      <th>Value</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+      <% @recipe.recipe_foods.each do |recipe_food| %>
+        <tr>
+          <td><%= recipe_food.food.name %></td>
+          <td><%= recipe_food.quantity %></td>
+          <td><%= recipe_food.food.price %></td>
+          <td>
+            <%= link_to "Delete" %>
+            <%= link_to "Edit" %>
+          </td>
+        </tr>
+      <% end %>
+        
+  </tbody>
+</table>
+</div>
