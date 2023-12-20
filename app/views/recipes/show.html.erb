@@ -1,19 +1,19 @@
-<div class="recipe-details">
+<div class="container recipe-details">
   <div class="details">
-    <h2><%= @recipe.name %></h2>
-    <div class="description-toggle">
-        <div class="description">
-            <p>Preparation Time: <%= @recipe.preparation_time %></p>
-            <p>Cooking Time: <%= @recipe.cooking_time %></p>
+    <h2 class="text-center mb-4" style="margin-right:30%;"><%= @recipe.name %></h2>
+    <div class="row recipe-details-box1">
+        <div class="col-md-6">
+            <p>Preparation Time: <%= @recipe.preparation_time %> minutes</p>
+            <p>Cooking Time: <%= @recipe.cooking_time %> minutes</p>
             <p>Description: <%= @recipe.description %></p>
         </div>
 
-        <div class="public-toogle">
+        <div class="col-md-6 text-right">
             <%= form_for @recipe, url: recipe_path(@recipe), method: :patch do |f| %>
                 <div class="form-group">
-                    <%= f.label :public %>
-                    <%= f.check_box :public, id: 'recipe_public' %>
-                    <%= f.submit 'Toggle' %>
+                    <%= f.label :public, class: 'mr-2' %>
+                    <%= f.check_box :public, class: 'form-check-input' %>
+                    <%= f.submit 'Toggle', class: 'btn btn-primary' %>
                 </div>
             <% end %>
         </div>
