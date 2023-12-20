@@ -6,10 +6,21 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li><a class="nav-link active text-warning dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <% if user_signed_in? %>
+            <li class="nav-item dropdown">
+              <a class="nav-link active text-warning dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Settings
               </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="javascript:void(0)">Signed in as <%= current_user.email %></a></li>
+                <li><%= link_to 'Sign out', destroy_user_session_path, class: "dropdown-item", method: :delete, data: {confirm: "Are you sure you want to log out?"} %></li>
+              </ul>
             </li>
+          <% else %>
+            <li class="nav-item">
+              <%= link_to "Sign in", new_user_session_path, class: "nav-link active text-warning" %>
+            </li>  
+          <% end %>
         </ul>
       </div>
     </div>
