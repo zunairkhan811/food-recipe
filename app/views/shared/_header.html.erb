@@ -4,6 +4,9 @@
       <% if user_signed_in? %>
         <!-- Links for logged-in users -->
         <li class="nav-item">
+          <a href="javascript:void(0)" class="nav-link text-warning">Food Recipe App&#127819</a>
+        </li>
+        <li class="nav-item">
           <%= link_to "Foods", foods_path, class: 'nav-link' %>
         </li>
         <li class="nav-item">
@@ -19,12 +22,12 @@
           <%= link_to "Shopping List", shopping_lists_path(current_user), class: 'nav-link' %>
         </li>
         <li class="nav-item">
-          <%= link_to "Logout", "/users/sign_out", method: :delete, class: 'nav-link' %>
+          <%= link_to "Logout", "/users/sign_out", method: :delete, class: 'nav-link active text-info ' %>
         </li>
       <% else %>
         <!-- "Home" tab for users not logged in -->
         <li class="nav-item">
-          <%= link_to "Home", class: 'nav-link' %>
+          <a href="javascript:void(0)" class="nav-link text-warning">Welcome To Food Recipe App!!</a>
         </li>
         <li class="nav-item">
           <%= link_to "Sign Up", new_user_registration_path, class: 'nav-link' %>
@@ -36,8 +39,8 @@
     </ul>
     <div class="navbar-text">
       <% if current_user.present? %>
-        <strong>User Name:</strong>
-        <%= current_user.name %>
+        <strong class="text-warning">User Name:</strong>
+        <span class="text-warning"><%= current_user.name %></span>
       <% end %>
     </div>
   </div>
