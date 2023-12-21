@@ -1,0 +1,38 @@
+<div class="container-fluid d-flex flex-column justify-content-center align-items-center">
+<h1 class="display-4">Shopping List</h1>
+
+<div class="w-100">
+  <div class="container w-50">
+    <div class="row">
+      <div class="col">
+        Amount of food items to buy: <%= @total_items %>
+      </div>
+
+      <div class="col">
+        Total value of food needed: <%= @total_value %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<table class="table table-striped border border-dark table-hover w-50 mt-4">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Food</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @foods.each do |food| %>
+      <% food_quantity = @recipe_foods_quantity[food.id] - food.quantity %>
+        <% if food_quantity > 0 %>
+        <tr>
+          <td><%= food.name %></td>
+          <td><%= food_quantity %></td>
+          <td><%= food_quantity * food.price %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
