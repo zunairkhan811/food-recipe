@@ -1,7 +1,7 @@
 class RecipesController < ApplicationController
   def index
-    @recipes = Recipe.all
-    @recipe = Recipe.new
+    @recipes  = current_user.recipes
+    # @recipe = Recipe.new
   end
 
   def show
@@ -45,4 +45,9 @@ class RecipesController < ApplicationController
       redirect_to recipes_path, alert: 'Recipe could not be deleted'
     end
   end
+
+  def public_recipes
+    @public_recipes = Recipe.where(public: true)
+  end
+
 end
