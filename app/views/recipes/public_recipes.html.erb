@@ -2,22 +2,30 @@
 
 <% if @public_recipes.present? %>
     <% @public_recipes.each do |recipe| %>
-        <a href="<%= recipe_path(recipe)%>" class="text-decoration-none">
-            <div class="card mb-3 border-dark bg-dark text-light">
+        
+        <div class="card mb-3 border-dark bg-dark text-light">
+            <a href="<%= recipe_path(recipe)%>" class="text-decoration-none">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-lg-4">
-                            <h2><%= recipe.name %></h2><br>
+                            <h2><%= recipe.name %></h2>
                             <h4>By: <%= recipe.user.name %></h4>
                         </div>
-                        <div class="col-lg-8">
+                        <div class="col-lg-5">
                             <p>Total Food items: <%= recipe.recipe_foods.count %> </p>
                             <p>Total Price($): <%= recipe.recipe_foods.joins(:food).sum('foods.price * recipe_foods.quantity') %> </p>
                         </div>  
                     </div>
                 </div>
-            </div>
-        </a>
+            </a>
+                <div class="card-body">
+                    <% if can? :destroy, recipe %>
+                        <p class="col-lg-3"><%= link_to "Delete Recipe", recipe_path(recipe), method: :delete, class: "btn btn-danger btn-sm", confirm: "Are you sure you want to delete this Recipe?" %></p>
+                    <% end %>
+                </div>
+            
+        </div>
+           
     <% end %>
 <% else %>
     <div class="card">
