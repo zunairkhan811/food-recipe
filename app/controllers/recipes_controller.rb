@@ -1,7 +1,7 @@
 class RecipesController < ApplicationController
   def index
-    @recipes = Recipe.all
-    @recipe = Recipe.new
+    @recipes = current_user.recipes
+    # @recipe = Recipe.new
   end
 
   def show
@@ -39,10 +39,16 @@ class RecipesController < ApplicationController
 
   def destroy
     @recipe = Recipe.find(params[:id])
+    authorize! :destroy, @recipe
     if @recipe.destroy
       redirect_to recipes_path, notice: 'Recipe deleted'
     else
       redirect_to recipes_path, alert: 'Recipe could not be deleted'
     end
+  end
+
+  def public_recipes
+    @public_recipes = Recipe.where(public: true).order(created_at: :desc)
+    authorize! :read, Recipe
   end
 end
