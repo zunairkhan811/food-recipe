@@ -13,7 +13,9 @@
             <% else %>
             <p>Public: No</p>
             <% end %>
-          <%= f.submit 'Toggle', class: 'btn btn-primary' %>
+          <% if can? :update, @recipe %>
+            <%= f.submit 'Toggle', class: 'btn btn-primary' %>
+          <% end %>
         </div>
       <% end %>
     </div>

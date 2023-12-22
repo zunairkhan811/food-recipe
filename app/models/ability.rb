@@ -3,6 +3,6 @@ class Ability
 
   def initialize(user)
     can :read, :all
-    can :destroy, Recipe, user_id: user.id
+    can [:update, :destroy], Recipe, user_id: user.id
   end
 end

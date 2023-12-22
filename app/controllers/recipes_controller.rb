@@ -25,7 +25,7 @@ class RecipesController < ApplicationController
 
   def update
     @recipe = Recipe.find(params[:id])
-
+    authorize! :update, @recipe
     if @recipe.public.zero?
       @recipe.update(public: 1)
       redirect_to @recipe, notice: 'Recipe public status was successfully updated.'
