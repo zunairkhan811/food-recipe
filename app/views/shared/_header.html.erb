@@ -19,7 +19,7 @@
           <%= link_to "Public Recipes", public_recipes_path(current_user), class: "nav-link #{current_page?(public_recipes_path(current_user)) ? 'active' : ''}" %>
         </li>
         <li class="nav-item">
-          <%= link_to "Shopping List", general_shopping_list_path, class: "nav-link #{current_page?(shopping_lists_path(current_user)) ? 'active' : ''}" %>
+          <%= link_to "Shopping List", general_shopping_list_path, class: "nav-link #{current_page?(general_shopping_list_path) ? 'active' : ''}" %>
         </li>
         <li class="nav-item">
           <%= link_to "Logout", "/users/sign_out", method: :delete, class: 'nav-link active text-info ' %>
