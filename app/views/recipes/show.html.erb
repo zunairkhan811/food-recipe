@@ -1,0 +1,61 @@
+<div class="container recipe-details">
+  <h2 class="text-center mb-4" style="margin-right:30%;"><%= @recipe.name %></h2>
+  <div class="row recipe-details-box1">
+    <div class="col-md-6">
+      <p><strong>Preparation Time:</strong> <%= @recipe.preparation_time %> minutes</p>
+    </div>
+
+    <div class="col-md-6 text-right">
+      <%= form_for @recipe, url: recipe_path(@recipe), method: :patch do |f| %>
+        <div class="form-group">
+           <% if @recipe.public == 1 %>
+            <p>Public: Yes</p>
+            <% else %>
+            <p>Public: No</p>
+            <% end %>
+          <% if can? :update, @recipe %>
+            <%= f.submit 'Toggle', class: 'btn btn-primary' %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+</div>
+
+  <p><strong>Cooking Time:</strong> <%= @recipe.cooking_time %> minutes</p>
+  <p><strong>Description:</strong> <%= @recipe.description %></p>
+  
+  <div class="row recipe-details-btns mt-4 mb-4">
+    <div class="col-md-6">
+      <%= link_to "Generate Shopping List", general_shopping_list_path, class: "btn btn-success btn-block" %>
+    </div>
+    <div class="col-md-6">
+      <% if current_user == @recipe.user %>
+        <%= link_to "Add Ingredient", new_recipe_recipe_food_path(recipe_id: @recipe.id), class: 'btn btn-primary btn-block' %>
+      <% end %>
+    </div>
+  </div>
+
+  <table class="table mt-4">
+    <thead>
+      <tr>
+        <th>Food</th>
+        <th>Quantity</th>
+        <th>Value</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @recipe_foods.includes(:food).each do |recipe_food| %>
+        <tr>
+          <td><%= recipe_food.food.name %></td>
+          <td><%= recipe_food.quantity %></td>
+          <td><%= recipe_food.food.price * recipe_food.quantity %></td>
+          <td>
+            <button class="btn btn-warning">Edit</button>
+            <button class="btn btn-danger">Delete</button>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
