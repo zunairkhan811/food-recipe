@@ -26,9 +26,9 @@
   <tbody>
     <% @items_to_buy.each do |food| %>
         <tr>
-          <td><%= food.name %></td>
-          <td><%= food_quantity %></td>
-          <td><%= food_quantity * food.price %></td>
+          <td><%= food[:name] %></td>
+          <td><%= food[:quantity] %></td>
+          <td><%= food[:value] %></td>
         </tr>
     <% end %>
   </tbody>
