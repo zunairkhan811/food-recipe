@@ -24,15 +24,12 @@
     </tr>
   </thead>
   <tbody>
-    <% @foods.each do |food| %>
-      <% food_quantity = @recipe_foods_quantity[food.id] - food.quantity %>
-        <% if food_quantity > 0 %>
+    <% @items_to_buy.each do |food| %>
         <tr>
           <td><%= food.name %></td>
           <td><%= food_quantity %></td>
           <td><%= food_quantity * food.price %></td>
         </tr>
-      <% end %>
     <% end %>
   </tbody>
 </table>
