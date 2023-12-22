@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
 
   get '/public_recipes', to: 'recipes#public_recipes', as: 'public_recipes'
-
+  get '/general_shopping_list', to: 'shopping_lists#index', as: 'general_shopping_list'
 
   root 'foods#index'
 
