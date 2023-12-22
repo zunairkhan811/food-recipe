@@ -21,6 +21,7 @@ class FoodsController < ApplicationController
 
   def destroy
     @food = Food.find(params[:id])
+    authorize! :destroy, @food
     if @food.destroy
       redirect_to foods_path, notice: 'Food item is deleted'
     else
