@@ -30,6 +30,11 @@ rescue ActiveRecord::PendingMigrationError => e
   abort e.to_s.strip
 end
 RSpec.configure do |config|
+  config.include Devise::Test::IntegrationHelpers, type: :system
+  config.before(:each, type: :system) do
+    driven_by :rack_test
+    Capybara.app_host = 'http://localhost:3000' # Adjust the host and port as needed
+  end
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_paths = [
     Rails.root.join('spec/fixtures')
