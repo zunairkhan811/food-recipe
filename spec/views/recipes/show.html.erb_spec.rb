@@ -26,19 +26,19 @@ RSpec.describe 'Recipe Details Page', type: :system do
     expect(page).to have_button('Edit', class: 'btn btn-warning')
     expect(page).to have_button('Delete', class: 'btn btn-danger')
   end
-  it 'check'  do
+  it 'check' do
     visit recipe_path(recipe1)
     expect(page).to have_content('A delicious apple pie recipe.')
     expect(page).to have_content('Preparation Time: 1 minutes')
     expect(page).to have_content('Cooking Time: 2 minutes')
   end
-  it 'check'  do
+  it 'check' do
     visit recipe_path(recipe1)
     expect(page).to have_content('Description: A delicious apple pie recipe.')
     expect(page).to have_content('Generate Shopping List')
     expect(page).to have_content('Add Ingredient')
   end
-  it 'check'  do
+  it 'check' do
     visit recipe_path(recipe1)
     expect(page).to have_content('Apple')
     expect(page).to have_content('5')

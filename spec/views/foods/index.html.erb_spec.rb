@@ -29,13 +29,13 @@ RSpec.describe 'Food Index Page', type: :system do
     expect(page).to have_content('Apple')
     expect(page).to have_content('5')
     expect(page).to have_content('pieces')
-    expect(page).to have_content('1') 
+    expect(page).to have_content('1')
   end
   it 'displays details of each food item' do
     visit foods_path
     expect(page).to have_content('Orange')
     expect(page).to have_content('7')
     expect(page).to have_content('kg')
-    expect(page).to have_content('2') 
+    expect(page).to have_content('2')
   end
 end

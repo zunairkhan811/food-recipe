@@ -25,7 +25,7 @@ RSpec.describe 'Recipe Index Page', type: :system do
   it 'displays details of each recipe' do
     visit recipes_path
 
-    within(".card", text: 'Apple Pie') do
+    within('.card', text: 'Apple Pie') do
       expect(page).to have_content('Apple Pie')
       expect(page).to have_content('A delicious apple pie recipe.')
       expect(page).to have_button('REMOVE', class: 'btn btn-danger btn-sm')
