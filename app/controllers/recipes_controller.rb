@@ -26,14 +26,21 @@ class RecipesController < ApplicationController
   def update
     @recipe = Recipe.find(params[:id])
     authorize! :update, @recipe
+
     if @recipe.public.zero?
-      @recipe.update(public: 1)
-      redirect_to @recipe, notice: 'Recipe public status was successfully updated.'
+      if @recipe.update(public: 1)
+        render json: { success: true, message: 'Recipe public status was successfully updated.' }
+      else
+        render json: { success: false, errors: @recipe.errors.full_messages }, status: :unprocessable_entity
+      end
     elsif @recipe.public == 1
-      @recipe.update(public: 0)
-      redirect_to @recipe, notice: 'Recipe public status was successfully updated.'
+      if @recipe.update(public: 0)
+        render json: { success: true, message: 'Recipe public status was successfully updated.' }
+      else
+        render json: { success: false, errors: @recipe.errors.full_messages }, status: :unprocessable_entity
+      end
     else
-      render :edit
+      render json: { success: false, errors: ['Invalid public status.'] }, status: :unprocessable_entity
     end
   end
 

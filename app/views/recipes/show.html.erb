@@ -2,22 +2,24 @@
   <h2 class="text-center mb-4" style="margin-right:30%;"><%= @recipe.name %></h2>
   <div class="row recipe-details-box1">
     <div class="col-md-6">
-      <p><strong>Preparation Time:</strong> <%= @recipe.preparation_time %> minutes</p>
+      <strong>Preparation Time:</strong> <%= @recipe.preparation_time %> minutes</p>
     </div>
 
-    <div class="col-md-6 text-right">
-      <%= form_for @recipe, url: recipe_path(@recipe), method: :patch do |f| %>
-        <div class="form-group">
-           <% if @recipe.public == 1 %>
-            <p>Public: Yes</p>
+    <div class=" col-md-6 text-right">
+      <div class="form-check form-switch col-sm-3">
+        <div class="d-flex align-items-center justify-content-between">
+          <label class="form-check-label mr-2" for="flexSwitchCheckChecked">
+            <% if @recipe.public == 1 %>
+              Public
             <% else %>
-            <p>Public: No</p>
+              Private
             <% end %>
+          </label>
           <% if can? :update, @recipe %>
-            <%= f.submit 'Toggle', class: 'btn btn-primary' %>
+            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" data-recipe-id="<%= @recipe.id %>" <%= 'checked' if @recipe.public == 1 %> >
           <% end %>
         </div>
-      <% end %>
+      </div>
     </div>
 </div>
 
