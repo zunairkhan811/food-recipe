@@ -91,7 +91,7 @@
   </div>
 </div>
 
-  <table class="table mt-4">
+  <table class="table table-bordered border border-dark mt-4">
     <thead>
       <tr>
         <th>Food</th>
@@ -107,8 +107,9 @@
           <td><%= recipe_food.quantity %></td>
           <td><%= recipe_food.food.price * recipe_food.quantity %></td>
           <td>
-            <button class="btn btn-warning">Edit</button>
-            <button class="btn btn-danger">Delete</button>
+            <% if can? :destroy, recipe_food %>
+            <%= link_to 'Delete', recipe_food_path(recipe_food), method: :delete, class: "btn btn-danger btn-sm", data: {confirm: "Are you sure you want to delete this Ingredient?"}  %>
+            <% end %>
           </td>
         </tr>
       <% end %>
