@@ -14,7 +14,9 @@
     </div>
   </div>
 </div>
-
+<% if @items_to_buy.empty? %>
+<h3 class="tex-center mt-5"></h3>
+<% else %>
 <table class="table table-striped border border-dark table-hover w-50 mt-4">
   <thead class="thead-dark">
     <tr>
@@ -33,3 +35,4 @@
     <% end %>
   </tbody>
 </table>
+<% end %>

@@ -1,12 +1,12 @@
 class RecipesController < ApplicationController
   def index
     @recipes = current_user.recipes
-    # @recipe = Recipe.new
   end
 
   def show
     @recipe = Recipe.find(params[:id])
     @recipe_foods = @recipe.recipe_foods
+    recipe_shopping_list
   end
 
   def create
@@ -57,5 +57,25 @@ class RecipesController < ApplicationController
   def public_recipes
     @public_recipes = Recipe.includes(:user).where(public: true).order(created_at: :desc)
     authorize! :read, Recipe
+  end
+
+  def recipe_shopping_list
+    @recipe_quantity = @recipe_foods.group(:food_id).sum(:quantity)
+    @foods = current_user.foods
+    @buy_items = []
+    @total_quantity = 0
+    @total_price = 0
+
+    @foods.each do |food|
+      next unless @recipe_quantity[food.id].present? && @recipe_quantity[food.id] > food.quantity
+
+      food_quantity = @recipe_quantity[food.id] - food.quantity
+      food_item = { name: food.name, quantity: food_quantity, value: food_quantity * food.price }
+      @buy_items << food_item
+      if food_quantity.positive?
+        @total_quantity += food_quantity
+        @total_price += food_quantity * food.price
+      end
+    end
   end
 end
