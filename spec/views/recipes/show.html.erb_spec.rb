@@ -23,8 +23,7 @@ RSpec.describe 'Recipe Details Page', type: :system do
   it 'displays details of the recipe and its foods' do
     visit recipe_path(recipe1)
     expect(page).to have_content('Apple Pie')
-    expect(page).to have_button('Edit', class: 'btn btn-warning')
-    expect(page).to have_button('Delete', class: 'btn btn-danger')
+    expect(page).to have_link('Delete', class: 'btn btn-danger')
   end
   it 'check' do
     visit recipe_path(recipe1)

@@ -30,6 +30,8 @@
 
 **[Food Recipe App]** is based on Ruby Language and Rails framework.
 
+### Project Video Link: <a href="https://screenapp.io/app/#/shared/106fd08e-4cc7-4033-9ff3-01d9818d3f8d" name="food-recipe">Click Here</a>
+
 ## 🛠 Built With <a name="built-with"></a>
 
 ### Tech Stack <a name="tech-stack"></a>
