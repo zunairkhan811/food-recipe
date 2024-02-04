@@ -2,6 +2,7 @@
 <a name="readme-top"></a>
 
   <h3><b>**Food Recipe App**</b></h3>
+  <img src="./app/assets/images/foodrecipescreenshot.png" alt="Projectimage">
 
 </div>
 
